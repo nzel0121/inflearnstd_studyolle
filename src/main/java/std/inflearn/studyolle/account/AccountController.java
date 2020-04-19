@@ -35,7 +35,7 @@ public class AccountController {
     }
 
     @PostMapping("/sign-up")
-    public String signUpSumit(@Valid SignUpForm signUpForm, Errors errors){
+    public String signUpSubmit(@Valid SignUpForm signUpForm, Errors errors){
         if(errors.hasErrors()){
             return "account/sign-up";
         }
@@ -57,8 +57,8 @@ public class AccountController {
             model.addAttribute("error", "wrong.token");
             return view;
         }
-        account.setEmailVerified(true);
-        account.setJoinedAt(LocalDateTime.now());
+        account.completeSignUp();
+
         model.addAttribute("numberOfUsers",accountRepository.count());
         model.addAttribute("nickname", account.getNickname());
         return view;
