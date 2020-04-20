@@ -56,7 +56,7 @@ public class AccountService {
     }
 
     public void login(Account account){
-        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(account.getNickname(), account.getPassword(), Arrays.asList(new SimpleGrantedAuthority("ROLE_USER")));
+        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(new UserAccount(account), account.getPassword(), Arrays.asList(new SimpleGrantedAuthority("ROLE_USER")));
         SecurityContextHolder.getContext().setAuthentication(token);
 
         //Java 9에서는 List.of  로 할수 있고 다른점은 Arrays.asList 는 mutable 한 객체 반환 , List.of 는 Immutable 한 객체 반환
