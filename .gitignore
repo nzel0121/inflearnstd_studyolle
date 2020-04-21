@@ -1,2 +1,5 @@
 # Project exclude paths
 /target/
+
+### NPM ###
+src/main/resources/static/node_modules
